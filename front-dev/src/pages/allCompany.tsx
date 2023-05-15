@@ -124,19 +124,7 @@ export default function Demo() {
               </Text>
               <Text size="sm" color="dimmed">
                 <div className={styles.iconSpace}>
-                  <Link href={`/editCompany?id=${d.id}
-                  &nome=${d.nome}
-                  &corMarca=${d.corMarca}
-                  &valor=${d.valor}
-                  &rating=${d.rating},
-                  &setor=${d.setor}
-                  &descricao=${d.descricao}
-                  &contacto=${d.contacto}
-                  &pais=${d.pais?.nome}
-                  &cidade=${d.endereco.cidade}
-                  &bairro=${d.endereco.bairro}
-                  &rua=${d.endereco.rua}
-                  `}> {/*Redirecting to page editCompany*/}
+                  <Link href={`/editCompany?id=${d.id}`}> {/*Redirecting to page editCompany*/}
                     <FontAwesomeIcon icon={faPen} />
                   </Link>
                   <Link href="" onClick={() => deleteCompany(d.id)}> {/*Calling function delete*/}

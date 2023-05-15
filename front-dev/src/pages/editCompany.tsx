@@ -14,7 +14,9 @@ const EditCompany = () => {
   const [showDeleteMessage, setShowDeleteMessage] = useState(false);
   const [tonkens, setTonkes] = useState<string | null>(null);
   const router = useRouter();
-  const {id,nome, valor, descricao, rating,contacto,corMarca,setor, pais, cidade, bairro, rua} = router.query;
+  const {id} = router.query;
+  const [data, setDatas] = useState<any>({});
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,6 +30,12 @@ const EditCompany = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/companies/${id}`)
+      .then(response => setDatas(response.data))
+      .catch(error => console.log(error));
+  }, [id]);
+
   const handleNextStep = () => {
     setStep(step + 1);
   };
@@ -36,28 +44,26 @@ const EditCompany = () => {
     setStep(step - 1);
   };
 
-  const [post, setPost] = useState({
-    nome: nome,
-    corMarca: corMarca,
-    rating: rating,
-    contacto: contacto,
-    setor: setor,
-    valor: valor,
-    descricao: descricao,
-    cidade: cidade,
-    bairro: bairro,
-    rua: rua,
-    pais: pais,
-  });
 
-  const handleFile = (event: any) => {
-    if (event.target.name === 'valor') {
-      const parsedValue = parseInt(event.target.value);
-      setPost({ ...post, [event.target.name]: parsedValue });
-    } else {
-      setPost({ ...post, [event.target.name]: event.target.value });
-    }
-  };
+const [post, setPost] = useState<any>({}); // Initialize post state as an empty object
+
+useEffect(() => {
+  setPost(data); // Set the initial value of post to the data object
+}, [data]);
+
+const handleFile = (event: any) => {
+  if (event.target.name === 'valor') {
+    const parsedValue = parseInt(event.target.value);
+    setPost({ ...post, [event.target.name]: parsedValue });
+  } else if (event.target.name === 'cidade' || event.target.name === 'bairro' || event.target.name === 'rua') {
+    setPost({ ...post, endereco: { ...post.endereco, [event.target.name]: event.target.value } });
+  } else {
+    setPost({ ...post, [event.target.name]: event.target.value });
+  }
+};
+
+// ...
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -104,7 +110,7 @@ const EditCompany = () => {
   
               <div className={styles.inputText}>
                 <select name="pais" className={styles.select} onChange={handleFile}>
-                  <option disabled selected hidden>{pais}</option>
+                  <option disabled selected hidden>{data?.pais?.nome}</option>
                   {country?.map(item => (
                     <option value={item.nome} key={item.id}>{item.nome}</option>
                   ))}
@@ -112,17 +118,17 @@ const EditCompany = () => {
               </div>
   
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} name='cidade' value={post.cidade} onChange={handleFile} />
-                <input type="text" className={styles.input}  name='bairro' value={post.bairro} onChange={handleFile} />
-                <input type="text" className={styles.input}  name='rua' value={post.rua} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder='Endereco' name='cidade' value={post?.endereco?.cidade} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder='Bariro'  name='bairro' value={post?.endereco?.bairro}  onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder='Rua' name='rua' value={post?.endereco?.rua}   onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} placeholder="Cor da Marca" name='corMarca'value={post.corMarca} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder="Cor da Marca" name='corMarca' value={post.corMarca}  onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
-                <input type="number" className={styles.input} placeholder="Valor da Empresa" name='valor' value={post.valor} onChange={handleFile} />
+                <input type="number" className={styles.input} placeholder="Valor da Empresa" name='valor' value={post.valor}   onChange={handleFile} />
               </div>
   
               <div className={styles.button}>
@@ -134,23 +140,23 @@ const EditCompany = () => {
           {step === 2 && (
             <div className={styles.main}>
               <div className={styles.heading}>
-                <h3>Cadastro de Empresa</h3>  
+                <h3>Editar Empresa</h3>  
               </div>
               
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} placeholder="Contacto" name="contacto" value={post.contacto} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder="Contacto" name="contacto" value={post.contacto}   onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} placeholder="Rating" name='rating' value={post.rating} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder="Rating" name='rating' value={post.rating}   onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} placeholder="Setor" name='setor' value={post.setor} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder="Setor" name='setor' value={post.setor}  onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
-                <textarea className={styles.input} placeholder="Descrição" name='descricao' value={post.descricao} onChange={handleFile}></textarea>
+                <textarea className={styles.input} placeholder="Descrição" name='descricao' value={post.descricao}   onChange={handleFile}></textarea>
               </div>
   
               <div className={styles.button}>

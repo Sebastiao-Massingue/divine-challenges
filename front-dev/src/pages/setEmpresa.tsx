@@ -33,19 +33,7 @@ const Formulario = () => {
     setStep(step - 1);
   };
 
-  const [post, setPost] = useState({
-    nome: '',
-    corMarca: '',
-    rating: '',
-    contacto: '',
-    setor: '',
-    valor: 0,
-    descricao: '',
-    cidade: '',
-    bairro: '',
-    rua: '',
-    pais: '',
-  });
+  const [post, setPost] = useState({});
 
   const handleFile = (event: any) => {
     if (event.target.name === 'valor') {
