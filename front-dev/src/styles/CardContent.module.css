@@ -1,0 +1,83 @@
+.cardTitulo{
+  margin: 20px 0px;
+  
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+
+/* Card */
+.card {
+  flex-basis: calc(25% - 20px); /* 4 colunas em telas maiores */
+
+  margin: 2px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  
+}
+
+/* Container da imagem */
+.imageContainer {
+  position: relative;
+}
+
+/* Imagem do card */
+.card img {
+  width: 100%; /* Imagem retangular */
+  height: 150px;
+  /* object-fit: cover; */
+  border-radius: 5px;
+}
+
+/* Container do ícone */
+.iconContainer {
+  position: absolute;
+  top: 50%; /* Alinha verticalmente no centro */
+  left: 50%; /* Alinha horizontalmente no centro */
+  transform: translate(-50%, -50%); /* Centraliza o ícone */
+}
+
+/* Ícone */
+.iconContainer i {
+  font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+  color: #333; /* Ajuste a cor do ícone conforme necessário */
+}
+.descName{
+  font-size: 20px !important;
+  color:#333;
+  /* font-weight: bold; */
+  padding-left: 10px;
+  margin-bottom: 0;
+}
+.descFundador{
+  font-size: 15px !important;
+  padding-left: 10px;
+  color: #333 ;
+ 
+}
+.desbutton{
+
+margin-left: 90px;
+margin-bottom: 10px;
+padding: 5px;
+cursor: pointer;
+}
+
+
+/* Estilos para telas menores */
+@media (max-width: 768px) {
+  .card {
+    flex-basis: 100%; /* Card ocupa uma linha inteira */
+  }
+}
+@media (max-width: 480px) {
+  .cardTitulo {
+    font-size: 25px !important;
+  }
+}
