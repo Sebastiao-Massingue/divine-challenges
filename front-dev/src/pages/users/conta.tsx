@@ -14,17 +14,18 @@ const Form = () => {
     setShowPassword((prevState) => !prevState);
   };
 
-const [post, setPost] = useState({
-  
-  email: "",
-  name: "",
-  password: "",
-  // conf_password:""
-})
+const [post, setPost] = useState({})
 
 const [erros, setErros] =useState({})
 const handleInpute =  (event:any)=>{
-  setPost({...post, [event.target.name]: event.target.value})
+  if(event.target.name === "email"){
+    const emailLowerCase = event.target.value.toLowerCase()
+  setPost({...post, [event.target.name]: emailLowerCase})
+
+  }else{
+      setPost({...post, [event.target.name]: event.target.value})
+
+  }
 
 }
 const handleSubmit = async (event: any) => {
@@ -33,9 +34,8 @@ const handleSubmit = async (event: any) => {
 
  
   try {
-    const response = await axios.post("http://localhost:8080/api/users", post);
-    router.push('/setCompany')
-    console.log(response.data);
+    const response = await axios.post("https://companies-u6b0.onrender.com/api/users", post);
+    router.push('/setEmpresa')
   } catch (err) {
     console.log(err);
   }
@@ -58,7 +58,7 @@ const handleSubmit = async (event: any) => {
             name="name"
             id="name"
             placeholder="Entre com seu nome"
-            value={post.name}
+           
 
             onChange={handleInpute}
             required
@@ -76,7 +76,7 @@ const handleSubmit = async (event: any) => {
             name="email"
             id="email"
             placeholder="Entre com seu email"
-            value={post.email}
+          
             onChange={handleInpute}
             required
 
@@ -99,7 +99,7 @@ const handleSubmit = async (event: any) => {
             name="password"
             id="password"
             placeholder="Entre com a sua senha"
-            value={post.password}
+           
             onChange={handleInpute}
             required
 

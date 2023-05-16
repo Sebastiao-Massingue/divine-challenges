@@ -25,13 +25,13 @@ const EditCompany = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/countries')
+      .get('http://companies-u6b0.onrender.com/api/countries')
       .then((response) => setCountry(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/companies/${id}`)
+    axios.get(`http://companies-u6b0.onrender.com/companies/${id}`)
       .then(response => setDatas(response.data))
       .catch(error => console.log(error));
   }, [id]);
@@ -69,7 +69,7 @@ const handleFile = (event: any) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/companies/${id}`,
+        `https://companies-u6b0.onrender.com/api/companies/${id}`,
         post,
         {
           headers: {

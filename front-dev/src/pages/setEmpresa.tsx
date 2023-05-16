@@ -20,7 +20,7 @@ const Formulario = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/countries')
+      .get('https://companies-u6b0.onrender.com/api/countries')
       .then((response) => setCountry(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -48,7 +48,7 @@ const Formulario = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/companies',
+        'https://companies-u6b0.onrender.com/api/companies',
         post,
         {
           headers: {

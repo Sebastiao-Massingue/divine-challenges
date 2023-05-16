@@ -31,7 +31,7 @@ export default function Demo() {
   //Get company by number of page
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/companies/items/${currentPage}`)
+      .get(`https://companies-u6b0.onrender.com/api/companies/items/${currentPage}`)
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, [currentPage]);
@@ -51,7 +51,7 @@ export default function Demo() {
   //Delete company
   function deleteCompany(idcamp: any) {
     axios
-      .delete(`http://localhost:8080/api/companies/${idcamp}`, {
+      .delete(`https://companies-u6b0.onrender.com/api/companies/${idcamp}`, {
         headers: {
           Authorization: `Bearer ${tonkens}`,
         },
@@ -92,6 +92,10 @@ export default function Demo() {
     },
   ];
 
+  const handleDataFromChild = (data:any) => {
+    // Do something with the data received from the child
+    setData(data);
+  };
   return (
     <>
       {/* Exibe a mensagem temporariamente */}
@@ -103,7 +107,7 @@ export default function Demo() {
       )}
   
       <HeaderAll />
-      <SeacherBar />
+      <SeacherBar onData={handleDataFromChild} />
   
       <Grid>
         {data?.map((d, i) => (

@@ -14,7 +14,8 @@ const Cards = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-        const response = await axios.get('http://localhost:8080/api/companies/top/five');
+        const response = await axios.get('https://companies-u6b0.onrender.com/api/companies/top/five');
+        console.log(response.data)
         setData(response.data);
     };
 

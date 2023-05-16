@@ -20,7 +20,12 @@ const Form = () => {
   });
 
   const handleInput = (event: any) => {
-    setPost({ ...post, [event.target.name]: event.target.value });
+    if(event.target.name ==="email"){
+      const emailLowercase = event.target.value.toLowerCase();
+    setPost({ ...post, [event.target.name]:emailLowercase });
+    }{
+      setPost({ ...post, [event.target.name]: event.target.value.toLowerCase()});
+    }
   };
 
   const router = useRouter();
@@ -28,7 +33,7 @@ const Form = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/api/users/auth", post);
+      const response = await axios.post("https://companies-u6b0.onrender.com/api/users/auth", post);
       // After receiving the token from the server
         localStorage.setItem('token', response.data);
         // sessionStorage.setItem("token", JSON.stringify(response.data));

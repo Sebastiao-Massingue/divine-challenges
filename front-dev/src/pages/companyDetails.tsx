@@ -78,7 +78,7 @@ import { useEffect, useState } from 'react';
     const [data, setDatas] = useState<any>({});
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/companies/${id}`)
+    axios.get(`https://companies-u6b0.onrender.com/api/companies/${id}`)
       .then(response => setDatas(response.data))
       .catch(error => console.log(error));
   }, [id]);
