@@ -138,8 +138,8 @@ import { useEffect, useState } from 'react';
               </List>
 
             </div>
-            {/* <Image src={image.} className={classes.image} /> */}
-          <img src="images/camp3.jpg" alt="Imagem 1" className={classes.image} />
+            <Image src="/images/camp2.jpg" className={classes.image}  />
+          {/* <image src={"images/camp3.jpg"} alt="Imagem 1" className={classes.image} /> */}
 
           </div>
         </Container>
