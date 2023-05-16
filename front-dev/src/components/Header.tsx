@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
     createStyles,
     Header,
@@ -157,15 +158,15 @@ import { useReducer } from 'react';
             <h1 style={{color:"#333"}}><i>techServices</i></h1>
   
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-              <a href="/" className={classes.link}>
+              <Link href="/" className={classes.link}>
                 Página Inicial
-              </a>
-              <a href="/allCompany" className={classes.link}>
+              </Link>
+              <Link href="/allCompany" className={classes.link}>
                 Empresas
-              </a>
-              <a href="/contact" className={classes.link}>
+              </Link>
+              <Link href="/contact" className={classes.link}>
                 Contactos
-              </a>
+              </Link>
             </Group>
   
             <Group className={classes.hiddenMobile}>
@@ -189,21 +190,21 @@ import { useReducer } from 'react';
           <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
             <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
   
-            <a href="/" className={classes.link}>
+            <Link href="/" className={classes.link}>
               Página Inicial
-            </a>
+            </Link>
 
-            <a href="/service" className={classes.link}>
+            <Link href="/service" className={classes.link}>
               Serviços
-            </a>
-            <a href="/about" className={classes.link}>
+            </Link>
+            <Link href="/about" className={classes.link}>
               Sobre Nós
-            </a>
+            </Link>
             
            
-            <a href="/contact" className={classes.link}>
+            <Link href="/contact" className={classes.link}>
               Contactos
-            </a>
+            </Link>
   
             <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
   

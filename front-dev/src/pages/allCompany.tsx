@@ -156,23 +156,23 @@ export default function Demo() {
       <nav aria-label="Page navigation">
         <ul className="pagination justify-content-center mt-5">
           <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-            <a className="page-link" onClick={handlePreviousPage} href="#">
+            <Link className="page-link" onClick={handlePreviousPage} href="#">
               Voltar
-            </a>
+            </Link>
           </li>
   
           {[...Array(totalPages)].map((_, index) => (
             <li className={`page-item ${currentPage === index + 1 ? 'active' : ''}`} key={index}>
-              <a className="page-link" onClick={() => setCurrentPage(index + 1)} href="#">
+              <Link className="page-link" onClick={() => setCurrentPage(index + 1)} href="#">
                 {index + 1}
-              </a>
+              </Link>
             </li>
           ))}
   
           <li className="page-item">
-            <a className="page-link" onClick={handleNextPage} href="#">
+            <Link className="page-link" onClick={handleNextPage} href="#">
               Proximo
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
