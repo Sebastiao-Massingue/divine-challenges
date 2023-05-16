@@ -111,7 +111,7 @@ import { useEffect, useState } from 'react';
                 <List.Item>
                 
                   {data?.fundadores?.map((fundador:any, index: any) => (
-                  <p style={{margin:"0px"}}><b key={index}>Fundador - </b>{fundador.user?.name}</p>))}
+                  <p style={{margin:"0px"}} key={index}><b>Fundador - </b>{fundador.user?.name}</p>))}
                  
                 </List.Item>
                 <List.Item>
