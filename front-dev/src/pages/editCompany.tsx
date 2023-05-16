@@ -25,13 +25,13 @@ const EditCompany = () => {
 
   useEffect(() => {
     axios
-      .get('http://companies-u6b0.onrender.com/api/countries')
+      .get('https://companies-u6b0.onrender.com/api/countries')
       .then((response) => setCountry(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    axios.get(`http://companies-u6b0.onrender.com/companies/${id}`)
+    axios.get(`https://companies-u6b0.onrender.com/companies/${id}`)
       .then(response => setDatas(response.data))
       .catch(error => console.log(error));
   }, [id]);
