@@ -6,6 +6,7 @@ import styles from '../styles/CompanyForm.module.css';
 import style from '../styles/Form.module.css';
 import { HeaderAll } from '@/components/HeaderAll';
 import { useRouter } from 'next/router';
+import { FooterLinks } from '@/components/Footer';
 
 const EditCompany = () => {
   const [step, setStep] = useState(1);
@@ -44,8 +45,10 @@ const EditCompany = () => {
     setStep(step - 1);
   };
 
-
-const [post, setPost] = useState<any>({}); // Initialize post state as an empty object
+const nome =data?.nome;
+const [post, setPost] = useState<any>({
+  nome: nome
+}); // Initialize post state as an empty object
 
 useEffect(() => {
   setPost(data); // Set the initial value of post to the data object
@@ -84,6 +87,38 @@ const handleFile = (event: any) => {
       console.log(err);
     }
   };
+
+  const foot=[
+ 
+    {
+      title: 'Empresa',
+      links: [
+        { label: 'Página Inicial', link: '/' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Empresa', link: '/allCompany' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Sobre Nós', link: '/about' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Contactos', link: '/contact' },
+       
+      ],
+    },
+  ]
   
   return (
     <>
@@ -105,7 +140,7 @@ const handleFile = (event: any) => {
               </div>
               
               <div className={styles.inputText}>
-                <input type="text" className={styles.input} placeholder="Nome da Empresa" name="nome" value={post.nome} onChange={handleFile} />
+                <input type="text" className={styles.input} placeholder="Nome da Empresa" name="nome" value={post?.nome} onChange={handleFile} />
               </div>
   
               <div className={styles.inputText}>
@@ -167,6 +202,8 @@ const handleFile = (event: any) => {
           )}
         </div>
       </form>
+
+      <FooterLinks data={foot} />
     </>
   );
   

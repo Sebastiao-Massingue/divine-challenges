@@ -25,7 +25,7 @@ const Cards = () => {
 
   return (
     <>
-      <h1 className={styles.cardTitulo}>Essas são as Empresas mais valiosas da <i>techServices</i></h1>
+      <h1 className={styles.cardTitulo}>Essas são as Empresas mais valiosas da <i>TechServices</i></h1>
       <Grid>
         
           {data && data.map(item => (

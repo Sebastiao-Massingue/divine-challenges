@@ -132,7 +132,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
     <footer className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
-          <h1 style={{color:"#333"}}><i>techServices</i></h1>
+          <h1 style={{color:"#4DABF7", fontFamily:`Greycliff CF`}}><i>TechServices</i></h1>
           <Text size="xs" color="dimmed" className={classes.description}>
             
           </Text>
@@ -141,7 +141,7 @@ export function FooterLinks({ data }: FooterLinksProps) {
       </Container>
       <Container className={classes.afterFooter}>
         <Text color="dimmed" size="sm">
-          © 2023 <i style={{color:"#333"}}>techServices</i>. Todos direitos reservados.
+          © 2023 <i style={{color:"#4DABF7", fontFamily:`Greycliff CF`}}>TechServices</i>. Todos direitos reservados.
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>

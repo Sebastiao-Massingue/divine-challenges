@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '../styles/CompanyForm.module.css';
 import style from '../styles/Form.module.css';
 import { HeaderAll } from '@/components/HeaderAll';
+import { FooterLinks } from '@/components/Footer';
 
 const Formulario = () => {
   const [step, setStep] = useState(1);
@@ -64,6 +65,40 @@ const Formulario = () => {
     }
   };
   
+
+  const foot=[
+ 
+    {
+      title: 'Empresa',
+      links: [
+        { label: 'Página Inicial', link: '/' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Empresa', link: '/allCompany' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Sobre Nós', link: '/about' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Contactos', link: '/contact' },
+       
+      ],
+    },
+  ]
+
+
   return (
     <>
       <HeaderAll />
@@ -146,6 +181,7 @@ const Formulario = () => {
           )}
         </div>
       </form>
+      <FooterLinks data={foot} />
     </>
   );
   

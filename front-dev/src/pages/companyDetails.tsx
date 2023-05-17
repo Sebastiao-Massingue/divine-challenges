@@ -1,3 +1,6 @@
+import { FooterLinks } from '@/components/Footer';
+import { HeaderMegaMenu } from '@/components/Header';
+import { HeaderAll } from '@/components/HeaderAll';
 import {
     createStyles,
     Image,
@@ -82,10 +85,44 @@ import { useEffect, useState } from 'react';
       .then(response => setDatas(response.data))
       .catch(error => console.log(error));
   }, [id]);
+
+  const foot=[
+ 
+    {
+      title: 'Empresa',
+      links: [
+        { label: 'Página Inicial', link: '/' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Empresa', link: '/allCompany' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Sobre Nós', link: '/about' },
+       
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Contactos', link: '/contact' },
+       
+      ],
+    },
+  ]
+  
   
     
     return (
       <div>
+        <HeaderAll/>
         <Container>
           <div className={classes.inner}>
             <div className={classes.content}>
@@ -143,6 +180,7 @@ import { useEffect, useState } from 'react';
 
           </div>
         </Container>
+        <FooterLinks data={foot} />
       </div>
     );
   }

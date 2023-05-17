@@ -101,7 +101,7 @@ export function HeroImageBackground() {
 
       <div className={classes.inner}>
         <Title className={classes.title}>
-          Encontre na techServices a sua Empresa de{' '}
+          Encontre na TechServices a sua Empresa de{' '}
           <Text component="span" inherit className={classes.highlight}>
             preferência
           </Text>

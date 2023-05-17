@@ -17,7 +17,7 @@ const data=[
   {
     title: 'Company',
     links: [
-      { label: 'Serviços', link: '/about' },
+      { label: 'Empresa', link: '/allCompany' },
      
     ],
   },
@@ -31,7 +31,7 @@ const data=[
   {
     title: 'Company',
     links: [
-      { label: 'Contactos', link: '/about' },
+      { label: 'Contactos', link: '/contact' },
      
     ],
   },

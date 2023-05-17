@@ -99,16 +99,18 @@
       font-weight: 400;
   }
 
-  
   .successMsg {
     color: #270;
     background-color: #DFF2BF;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
-    margin: 10px 400px;
+    margin: 10px auto; /* Center the message horizontally */
     padding: 10px;
-    border-radius: 3px 3px 3px 3px;
+    border-radius: 3px;
     text-align: center;
+    max-width: 100%; /* Limit the width to the container's width */
+    box-sizing: border-box; /* Include padding and border in the width */
   }
+  
   
   
