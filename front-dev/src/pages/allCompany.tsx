@@ -9,26 +9,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/Form.module.css";
 import { useRouter } from 'next/router';
 import SeacherBar from '@/components/SearchBar';
+import withAuth from '@/components/withAuth'; 
 
-export default function Demo() {
-  
-  //Variables
+
+const Demo = () => {
+  // Variables
   const [data, setData] = useState<null | Array<any>>(null);
   const [deletes, setDeletes] = useState<any>(null);
   const [showDeleteMessage, setShowDeleteMessage] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 8; // Total number of pages
   const router = useRouter();
-  
-  
-  const [tonkens, setTonkes] = useState<string | null>(null);
+
+  const [tokens, setTokens] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setTonkes(token);
+    setTokens(token);
   }, []);
 
-  //Get company by number of page
+  // Get company by number of page
   useEffect(() => {
     axios
       .get(`https://companies-u6b0.onrender.com/api/companies/items/${currentPage}`)
@@ -36,24 +36,24 @@ export default function Demo() {
       .catch((error) => console.log(error));
   }, [currentPage]);
 
-  //Next page
+  // Next page
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  //Prev page
+  // Prev page
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
-  //Delete company
+  // Delete company
   function deleteCompany(idcamp: any) {
     axios
       .delete(`https://companies-u6b0.onrender.com/api/companies/${idcamp}`, {
         headers: {
-          Authorization: `Bearer ${tonkens}`,
+          Authorization: `Bearer ${tokens}`,
         },
       })
       .then((response) => {
@@ -64,7 +64,7 @@ export default function Demo() {
       .catch((error) => console.log(error));
   }
 
-  //Data to be pass in footer
+  // Data to be passed in footer
   const foot = [
     {
       title: 'Empresa',
@@ -92,10 +92,11 @@ export default function Demo() {
     },
   ];
 
-  const handleDataFromChild = (data:any) => {
+  const handleDataFromChild = (data: any) => {
     // Do something with the data received from the child
     setData(data);
   };
+
   return (
     <>
       {/* Exibe a mensagem temporariamente */}
@@ -105,10 +106,11 @@ export default function Demo() {
           {deletes?.msg}
         </div>
       )}
-  
+
       <HeaderAll />
+
       <SeacherBar onData={handleDataFromChild} />
-  
+
       <Grid>
         {data?.map((d, i) => (
           <Grid.Col sm={12} md={3} lg={3} key={i}>
@@ -116,13 +118,13 @@ export default function Demo() {
               <Card.Section component="a" href="/companyDetails">
                 <Image src="images/camp3.jpg" height={140} alt="Norway" />
               </Card.Section>
-  
+
               <Group position="apart" mt="md" mb="xs">
                 <Text>
                   <strong>{d.nome.split(' ')[0]}</strong> - {d.pais.nome}
                 </Text>
               </Group>
-  
+
               <Text size="sm" color="dimmed">
                 {d.descricao.length > 75 ? `${d.descricao.substring(0, 75)}...` : d.descricao}
               </Text>
@@ -136,9 +138,9 @@ export default function Demo() {
                   </Link>
                 </div>
               </Text>
-  
-              <Button 
-                onClick={() => router.push(`/companyDetails?id=${d.id}`)} 
+
+              <Button
+                onClick={() => router.push(`/companyDetails?id=${d.id}`)}
                 variant="light"
                 color="blue"
                 fullWidth
@@ -151,7 +153,7 @@ export default function Demo() {
           </Grid.Col>
         ))}
       </Grid>
-  
+
       {/* Pagination */}
       <nav aria-label="Page navigation">
         <ul className="pagination justify-content-center mt-5">
@@ -160,7 +162,7 @@ export default function Demo() {
               Voltar
             </Link>
           </li>
-  
+
           {[...Array(totalPages)].map((_, index) => (
             <li className={`page-item ${currentPage === index + 1 ? 'active' : ''}`} key={index}>
               <Link className="page-link" onClick={() => setCurrentPage(index + 1)} href="#">
@@ -168,7 +170,7 @@ export default function Demo() {
               </Link>
             </li>
           ))}
-  
+
           <li className="page-item">
             <Link className="page-link" onClick={handleNextPage} href="#">
               Proximo
@@ -176,9 +178,10 @@ export default function Demo() {
           </li>
         </ul>
       </nav>
-  
+
       <FooterLinks data={foot} />
     </>
   );
-  
-}
+};
+
+export default withAuth(Demo);
