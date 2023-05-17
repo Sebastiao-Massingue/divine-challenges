@@ -196,12 +196,10 @@ import { sizes } from '@mantine/core/lib/ActionIcon/ActionIcon.styles';
               Página Inicial
             </Link>
 
-            <Link href="/service" className={classes.link}>
-              Serviços
+            <Link href="/allCompany" className={classes.link}>
+              Empresas
             </Link>
-            <Link href="/about" className={classes.link}>
-              Sobre Nós
-            </Link>
+            
             
            
             <Link href="/contact" className={classes.link}>
