@@ -180,7 +180,7 @@ import { useEffect, useState } from 'react';
 
           </div>
         </Container>
-        <FooterLinks data={foot} />
+        {/* <FooterLinks data={foot} /> */}
       </div>
     );
   }

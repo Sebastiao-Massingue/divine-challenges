@@ -202,7 +202,7 @@ const handleFile = (event: any) => {
         </div>
       </form>
 
-      <FooterLinks data={foo} />
+      {/* <FooterLinks data={foo} /> */}
     </>
   );
   
