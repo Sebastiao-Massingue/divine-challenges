@@ -37,15 +37,23 @@ export default function SearchBar({ onData }: { onData: Function }): JSX.Element
 
   // Criar arquivo csv
   const CSV = async () => {
-    axios
-      .get(`https://companies-u6b0.onrender.com/api/companies/create/csv`)
-      .then((response) => {
-        setCsv(response.data);
-        setShowDeleteMessage(true); // Exibir a mensagem temporariamente
-        setTimeout(() => setShowDeleteMessage(false), 3000);
-      })
-      .catch((error) => console.log("Fallha"));
+    try {
+      const response = await axios.get('https://companies-u6b0.onrender.com/api/companies/create/csv');
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+  
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'filename.csv');
+      document.body.appendChild(link);
+      link.click();
+  
+      // Clean up the temporary URL object
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log('Failed to download file:', error);
+    }
   };
+  
 
   return (
     <>
