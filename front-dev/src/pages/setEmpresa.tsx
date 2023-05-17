@@ -181,7 +181,7 @@ const Formulario = () => {
           )}
         </div>
       </form>
-      {/* <FooterLinks data={foot} /> */}
+      <FooterLinks data={foot} />
     </>
   );
   

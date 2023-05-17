@@ -177,7 +177,7 @@ export default function Demo() {
         </ul>
       </nav>
   
-      {/* <FooterLinks data={foot} /> */}
+      <FooterLinks data={foot} />
     </>
   );
   
