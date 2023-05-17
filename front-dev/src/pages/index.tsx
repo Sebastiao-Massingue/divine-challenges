@@ -5,7 +5,7 @@ import { HeroImageBackground } from "@/components/HeroHeader";
 import { NextPage } from "next";
 
 // Dados para FooterLinks
-const data=[
+const foot=[
  
   {
     title: 'Empresa',
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
     <HeaderMegaMenu />
     <HeroImageBackground />
     <Card />
-    <FooterLinks data={data} />
+    <FooterLinks data={foot} />
   </> );
 }
  

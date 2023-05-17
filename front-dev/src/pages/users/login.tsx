@@ -36,9 +36,7 @@ const Form = () => {
       const response = await axios.post("https://companies-u6b0.onrender.com/api/users/auth", post);
       // After receiving the token from the server
         localStorage.setItem('token', response.data);
-        // sessionStorage.setItem("token", JSON.stringify(response.data));
       router.push('/allCompany');
-      
     } catch (err) {
       setError("Dados incorretos"); // Set the error message
     }

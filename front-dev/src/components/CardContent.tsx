@@ -15,7 +15,6 @@ const Cards = () => {
 
     const fetchData = async () => {
         const response = await axios.get('https://companies-u6b0.onrender.com/api/companies/top/five');
-        console.log(response.data)
         setData(response.data);
     };
 

@@ -32,11 +32,10 @@ const EditCompany = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`https://companies-u6b0.onrender.com/companies/${id}`)
+    axios.get(`https://companies-u6b0.onrender.com/api/companies/${id}`)
       .then(response => setDatas(response.data))
-      .catch(error => console.log(error));
+      .catch(error => console.log("Falha ao cadastrar"+ error));
   }, [id]);
-
   const handleNextStep = () => {
     setStep(step + 1);
   };
@@ -45,10 +44,8 @@ const EditCompany = () => {
     setStep(step - 1);
   };
 
-const nome =data?.nome;
-const [post, setPost] = useState<any>({
-  nome: nome
-}); // Initialize post state as an empty object
+
+const [post, setPost] = useState<any>({});
 
 useEffect(() => {
   setPost(data); // Set the initial value of post to the data object
@@ -81,6 +78,8 @@ const handleFile = (event: any) => {
         }
       );
       setResposta(response.data);
+      console.log(response.data);
+
       setShowDeleteMessage(true); // Exibir a mensagem temporariamente
       setTimeout(() => setShowDeleteMessage(false), 3000); // Ocultar a mensagem após 3 segundos
     } catch (err) {
@@ -88,7 +87,7 @@ const handleFile = (event: any) => {
     }
   };
 
-  const foot=[
+  const foo=[
  
     {
       title: 'Empresa',
@@ -203,7 +202,7 @@ const handleFile = (event: any) => {
         </div>
       </form>
 
-      <FooterLinks data={foot} />
+      <FooterLinks data={foo} />
     </>
   );
   
