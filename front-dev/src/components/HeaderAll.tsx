@@ -156,7 +156,7 @@ import { useReducer } from 'react';
       <Box pb={120}>
         <Header height={75} px="md">
           <Group position="apart" sx={{ height: '100%' }}>
-            <h1 style={{color:"#4DABF7",fontFamily:`Greycliff CF`}}><i>TechServices</i></h1>
+            <h1 style={{color:"#4DABF7",fontFamily:`Greycliff CF`, fontSize:"40px"}}><i>TechServices</i></h1>
   
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
               <Link href="/" className={classes.link}>
