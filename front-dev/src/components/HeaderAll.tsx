@@ -156,18 +156,21 @@ import { useReducer } from 'react';
 
     
     //Logout
-  const [tonkens, setTonkes] = useState<string | null>(null);
- 
+    const [tokens, setTokens] = useState<string | null>(null);
+
     useEffect(() => {
       const token = localStorage.getItem('token');
-      setTonkes(token);
+      setTokens(token);
     }, []);
+    
+    const handleLogout = () => {
+      localStorage.removeItem('token');
+      setTokens(null)
 
-    const handleLogout = ()=>{
-      localStorage.removeItem('tonkens');
       router.push('/');
-
-    }
+    };
+    console.log("logout: " + tokens);
+    
   
     return (
       <Box pb={120}>
@@ -189,7 +192,8 @@ import { useReducer } from 'react';
   
             <Group className={classes.hiddenMobile}>
              
-              <Button variant='default' onClick={()=>handleLogout}>Terminar sessão</Button>
+              <Button variant="default" onClick={() => handleLogout()}>Terminar sessão</Button>
+
             </Group>
   
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -225,7 +229,8 @@ import { useReducer } from 'react';
   
             <Group position="center" grow pb="xl" px="md">
               {/* <Button variant="default" onClick={()=> router.push('/users/login')}>Entrar</Button> */}
-              <Button  onClick={()=>handleLogout}>Terminar sessão</Button>
+              <Button onClick={() => handleLogout()}>Terminar sessão</Button>
+
             </Group>
           </ScrollArea>
         </Drawer>
