@@ -43,7 +43,7 @@ export default function SearchBar({ onData }: { onData: Function }): JSX.Element
   
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'filename.csv');
+      link.setAttribute('download', 'TechServices.csv');
       document.body.appendChild(link);
       link.click();
   
@@ -77,7 +77,7 @@ export default function SearchBar({ onData }: { onData: Function }): JSX.Element
             gradient={{ from: 'indigo', to: 'cyan' }}
             style={{ marginRight: '40px', marginLeft: '10px' }}
           >
-            Criar arquivo CSV
+            Download File
           </Button>
         </div>
 

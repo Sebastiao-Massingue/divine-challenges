@@ -1,4 +1,5 @@
 import ContactIconsList from '@/components/ContactUs';
+import { FooterLinks } from '@/components/Footer';
 import { HeaderAll } from '@/components/HeaderAll';
 import {
     createStyles,
@@ -91,6 +92,34 @@ import {
         <Icon size="1.4rem" stroke={1.5} />
       </ActionIcon>
     ));
+
+    //Data to be pass in footer
+  const foot = [
+    {
+      title: 'Empresa',
+      links: [
+        { label: 'Página Inicial', link: '/' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Serviços', link: '/about' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Sobre Nós', link: '/about' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Contactos', link: '/about' },
+      ],
+    },
+  ];
   
     return (
         <>
@@ -135,6 +164,7 @@ import {
           </div>
         </SimpleGrid>
       </div>
+      <FooterLinks data={foot} />
       </>
     );
   }
