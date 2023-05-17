@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-const seba ="";
+
 interface ComponentProps {
   email: string;
   password: string;
