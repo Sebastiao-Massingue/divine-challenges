@@ -10,12 +10,16 @@ const Cards = () => {
   const router = useRouter();
 
   const [data, setData] = useState<null | Array<any>>(null); // Provide type annotation
+  const [loading, setLoading] = useState(false); // New state variable for loading
+
 
   useEffect(() => {
-
+    setLoading(true);
     const fetchData = async () => {
         const response = await axios.get('https://companies-u6b0.onrender.com/api/companies/top/five');
         setData(response.data);
+        setLoading(false); // Hide the loading spinner after data is fetched
+
     };
 
     fetchData();
@@ -25,7 +29,12 @@ const Cards = () => {
   return (
     <>
       <h1 className={styles.cardTitulo}>Essas são as Empresas mais valiosas da <i>TechServices</i></h1>
-      <Grid>
+
+        {loading ? (
+          <div className={styles.loadingcontainer}>
+          <div className={styles.loadingspinner} />
+        </div>
+      ) : (<Grid>
         
           {data && data.map(item => (
 
@@ -56,6 +65,7 @@ const Cards = () => {
           ))}
         
       </Grid>
+       )}
     </>
   );
 };

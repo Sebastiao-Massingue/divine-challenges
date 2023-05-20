@@ -9,8 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/Form.module.css";
 import { useRouter } from 'next/router';
 import SeacherBar from '@/components/SearchBar';
-import withAuth from '@/components/withAuth'; 
-
+import withAuth from '@/components/withAuth';
 
 const Demo = () => {
   // Variables
@@ -22,6 +21,7 @@ const Demo = () => {
   const router = useRouter();
 
   const [tokens, setTokens] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); // New state variable for loading
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -30,10 +30,18 @@ const Demo = () => {
 
   // Get company by number of page
   useEffect(() => {
+    setLoading(true); // Show the loading spinner
+
     axios
       .get(`https://companies-u6b0.onrender.com/api/companies/items/${currentPage}`)
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error));
+      .then((response) => {
+        setData(response.data);
+        setLoading(false); // Hide the loading spinner after data is fetched
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false); // Hide the loading spinner on error
+      });
   }, [currentPage]);
 
   // Next page
@@ -111,48 +119,54 @@ const Demo = () => {
 
       <SeacherBar onData={handleDataFromChild} />
 
-      <Grid>
-        {data?.map((d, i) => (
-          <Grid.Col sm={12} md={3} lg={3} key={i}>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section component="a" href="/companyDetails">
-                <Image src="images/camp3.jpg" height={140} alt="Norway" />
-              </Card.Section>
+      {loading ? (
+          <div className={styles.loadingcontainer}>
+          <div className={styles.loadingspinner} />
+        </div>
+      ) : (
+        <Grid>
+          {data?.map((d, i) => (
+            <Grid.Col sm={12} md={3} lg={3} key={i}>
+              <Card shadow="sm" padding="lg" radius="md" withBorder>
+                <Card.Section component="a" href="/companyDetails">
+                  <Image src="images/camp3.jpg" height={140} alt="Norway" />
+                </Card.Section>
 
-              <Group position="apart" mt="md" mb="xs">
-                <Text>
-                  <strong>{d.nome.split(' ')[0]}</strong> - {d.pais.nome}
+                <Group position="apart" mt="md" mb="xs">
+                  <Text>
+                    <strong>{d.nome.split(' ')[0]}</strong> - {d.pais.nome}
+                  </Text>
+                </Group>
+
+                <Text size="sm" color="dimmed">
+                  {d.descricao.length > 75 ? `${d.descricao.substring(0, 75)}...` : d.descricao}
                 </Text>
-              </Group>
+                <Text size="sm" color="dimmed">
+                  <div className={styles.iconSpace}>
+                    <Link href={`/editCompany?id=${d.id}`}> {/*Redirecting to page editCompany*/}
+                      <FontAwesomeIcon icon={faPen} />
+                    </Link>
+                    <Link href="" onClick={() => deleteCompany(d.id)}> {/*Calling function delete*/}
+                      <FontAwesomeIcon icon={faTrash} />
+                    </Link>
+                  </div>
+                </Text>
 
-              <Text size="sm" color="dimmed">
-                {d.descricao.length > 75 ? `${d.descricao.substring(0, 75)}...` : d.descricao}
-              </Text>
-              <Text size="sm" color="dimmed">
-                <div className={styles.iconSpace}>
-                  <Link href={`/editCompany?id=${d.id}`}> {/*Redirecting to page editCompany*/}
-                    <FontAwesomeIcon icon={faPen} />
-                  </Link>
-                  <Link href="" onClick={() => deleteCompany(d.id)}> {/*Calling function delete*/}
-                    <FontAwesomeIcon icon={faTrash} />
-                  </Link>
-                </div>
-              </Text>
-
-              <Button
-                onClick={() => router.push(`/companyDetails?id=${d.id}`)}
-                variant="light"
-                color="blue"
-                fullWidth
-                mt="md"
-                radius="md"
-              >
-                Ver mais detalhes
-              </Button>
-            </Card>
-          </Grid.Col>
-        ))}
-      </Grid>
+                <Button
+                  onClick={() => router.push(`/companyDetails?id=${d.id}`)}
+                  variant="light"
+                  color="blue"
+                  fullWidth
+                  mt="md"
+                  radius="md"
+                >
+                  Ver mais detalhes
+                </Button>
+              </Card>
+            </Grid.Col>
+          ))}
+        </Grid>
+      )}
 
       {/* Pagination */}
       <nav aria-label="Page navigation">
@@ -183,6 +197,5 @@ const Demo = () => {
     </>
   );
 };
-
 
 export default withAuth(Demo);
