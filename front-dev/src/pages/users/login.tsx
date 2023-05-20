@@ -5,6 +5,9 @@ import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useRouter } from 'next/router';
+import { HeaderAll } from "@/components/HeaderAll";
+import { FooterLinks } from "@/components/Footer";
+import { HeaderMegaMenu } from "@/components/Header";
 
 const Form = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,7 +45,37 @@ const Form = () => {
     }
   };
 
+  // Data to be passed in footer
+  const foot = [
+    {
+      title: 'Empresa',
+      links: [
+        { label: 'Página Inicial', link: '/' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Serviços', link: '/about' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Sobre Nós', link: '/about' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'Contactos', link: '/about' },
+      ],
+    },
+  ];
+
   return (
+    <>
+    <HeaderMegaMenu />
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.h2}>Formulário de Login</h2>
@@ -87,7 +120,10 @@ const Form = () => {
         </p>
       </form>
     </div>
+    <FooterLinks data={foot} />
+    </>
   );
+  
 };
 
 export default Form;

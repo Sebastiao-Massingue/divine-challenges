@@ -94,7 +94,7 @@ export default function SearchBar({ onData }: { onData: Function }): JSX.Element
               )}
             </ActionIcon>
           }
-          placeholder="Search questions"
+          placeholder="Pesquisa sua Empresa de preferência "
           rightSectionWidth={42}
           style={{
             width: '100%', // Take full width on mobile

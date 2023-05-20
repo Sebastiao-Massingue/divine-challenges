@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+import { FooterLinks } from "@/components/Footer";
+import { HeaderMegaMenu } from "@/components/Header";
+
 const Form = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -41,10 +44,39 @@ const handleSubmit = async (event: any) => {
   }
 };
 
-
+// Data to be passed in footer
+const foot = [
+  {
+    title: 'Empresa',
+    links: [
+      { label: 'Página Inicial', link: '/' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'Serviços', link: '/about' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'Sobre Nós', link: '/about' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'Contactos', link: '/about' },
+    ],
+  },
+];
 
 
   return (
+    <>
+  
+    <HeaderMegaMenu />
     <div className={styles.container}>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -136,6 +168,8 @@ const handleSubmit = async (event: any) => {
         </p>
       </form>
     </div>
+    <FooterLinks data={foot} />
+    </>
   );
 };
 
